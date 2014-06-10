@@ -3,7 +3,7 @@ var matches = require('matches-selector')
 module.exports = function (element, selector, checkYoSelf) {
   var parent = checkYoSelf ? element : element.parentNode
 
-  while (parent && parent !== document) {
+  while (parent && parent.nodeType !== document.DOCUMENT_NODE && parent.nodeType !== document.DOCUMENT_FRAGMENT_NODE) {
     if (matches(parent, selector)) return parent;
     parent = parent.parentNode
   }
